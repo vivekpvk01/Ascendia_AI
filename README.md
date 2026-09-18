@@ -71,7 +71,7 @@ ascendia-ai/
 ├── frontend/          Next.js 16 (App Router) + TypeScript + Tailwind CSS
 ├── backend/           FastAPI + Python 3.13 + Pydantic v2
 ├── ai/                AI pipeline interfaces (Phase 2 stub)
-├── .env.example       Root environment variable template
+├── .env               Root environment configuration
 └── .gitignore
 ```
 
@@ -190,8 +190,7 @@ source venv/bin/activate
 # Install dependencies
 pip install -r requirements.txt
 
-# Copy environment file
-cp .env.example .env
+# Configure environment in .env if needed
 
 # Start the server
 uvicorn app.main:app --reload --port 8000
@@ -207,9 +206,6 @@ cd frontend
 
 # Install dependencies
 npm install
-
-# Copy environment file
-cp .env.example .env.local
 
 # Start dev server
 npm run dev
@@ -237,7 +233,7 @@ The application will be available at `http://localhost:3000`.
 |---|---|---|
 | `NEXT_PUBLIC_API_URL` | Base URL of the FastAPI backend | `http://localhost:8000` |
 
-**Never commit `.env` or `.env.local` files.** Use `.env.example` as the template.
+All environment variables are configured directly in `.env`.
 
 ---
 

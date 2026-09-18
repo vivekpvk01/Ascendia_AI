@@ -22,10 +22,8 @@ dist/
 build/
 
 # === Environment ===
-.env
 .env.local
 .env.*.local
-!.env.example
 
 # === Uploaded files (local dev storage) ===
 backend/uploads/

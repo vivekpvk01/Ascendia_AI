@@ -2,7 +2,7 @@
 Ascendia AI — Application Configuration
 
 All settings are loaded from environment variables (with .env fallback).
-Never hardcode secrets. See .env.example for required variables.
+Never hardcode secrets. Configure required variables in .env.
 """
 
 import os
