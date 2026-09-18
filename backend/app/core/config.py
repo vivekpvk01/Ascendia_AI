@@ -14,15 +14,19 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(".env", "../.env"),
         env_file_encoding="utf-8",
         case_sensitive=False,
+        extra="ignore",
     )
 
     # Application
     app_name: str = "Ascendia AI"
     app_version: str = "0.1.0"
     app_env: str = "development"
+
+    # Session — must be a long random string; set in .env
+    session_secret: str = "CHANGE_ME_IN_PRODUCTION_USE_A_LONG_RANDOM_SECRET"
 
     # CORS — comma-separated list of allowed origins
     cors_origins: str = "http://localhost:3000"

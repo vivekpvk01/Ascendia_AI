@@ -1,27 +1,36 @@
+"use client";
+
+/**
+ * Ascendia AI — Overview/Dashboard page
+ *
+ * Shows a personalized greeting using the authenticated user's name.
+ * Stat cards and empty states remain until real data is connected.
+ */
+
 import type { Metadata } from "next";
 import { AppShell } from "@/components/layout/AppShell";
-import { FileText, Activity, Clock } from "lucide-react";
+import { FileText, Activity, Clock, Code2 } from "lucide-react";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Card, CardBody } from "@/components/ui/Card";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-
-export const metadata: Metadata = {
-  title: "Overview",
-  description: "Ascendia AI dashboard — your assessment preparation overview.",
-};
+import { useAuth } from "@/app/providers/AuthProvider";
 
 export default function DashboardPage() {
+  const { user, isLoading } = useAuth();
+
   const hour = new Date().getHours();
-  const greeting =
+  const timeOfDay =
     hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+  const displayName = isLoading ? "" : (user?.name?.split(" ")[0] ?? "there");
+  const greeting = `${timeOfDay}${displayName ? `, ${displayName}` : ""}`;
 
   return (
     <AppShell>
       {/* Page header */}
       <div className="mb-8">
         <h1 className="text-2xl font-semibold text-[#0f172a] tracking-tight">
-          {greeting}, Vivek
+          {isLoading ? "Loading…" : greeting}
         </h1>
         <p className="text-[#64748b] text-sm mt-1">
           Continue your assessment preparation.
@@ -33,6 +42,11 @@ export default function DashboardPage() {
         <Link href="/assessments/new">
           <Button variant="primary" size="md" leftIcon={<FileText size={14} />}>
             Upload Assessment
+          </Button>
+        </Link>
+        <Link href="/practice">
+          <Button variant="secondary" size="md" leftIcon={<Code2 size={14} />}>
+            Browse Practice
           </Button>
         </Link>
       </div>
@@ -83,6 +97,13 @@ export default function DashboardPage() {
             icon={Activity}
             title="No practice sessions yet"
             description="Once you have uploaded and processed an assessment, you can start a structured practice session here. Track your progress across all problems."
+            action={
+              <Link href="/practice">
+                <Button variant="secondary" size="sm">
+                  Browse Questions
+                </Button>
+              </Link>
+            }
           />
         </Card>
       </div>

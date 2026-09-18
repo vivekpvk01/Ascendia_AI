@@ -1,0 +1,3 @@
+"""
+Ascendia AI — models package
+"""
