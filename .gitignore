@@ -1,0 +1,53 @@
+# === Dependencies ===
+node_modules/
+.pnp
+.pnp.js
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+env/
+dist-info/
+*.egg-info/
+.eggs/
+
+# === Build outputs ===
+.next/
+out/
+dist/
+build/
+
+# === Environment ===
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# === Uploaded files (local dev storage) ===
+backend/uploads/
+
+# === Editor / OS ===
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# === Testing ===
+.pytest_cache/
+.coverage
+htmlcov/
+coverage/
+*.lcov
+
+# === Logs ===
+*.log
+logs/
+
+# === Type checking ===
+*.tsbuildinfo
